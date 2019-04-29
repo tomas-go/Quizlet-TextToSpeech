@@ -9,9 +9,8 @@ class Subject:
         self.link = link
 
     def info(self):
-        return "Group:" + self.name + "has " + self.num_of_terms + "terms."
+         return "Group: " + self.name + " has " + self.num_of_terms + " terms."
 
     def all_info(self):
-        print("Name: " + str(self.name) + "\nNumber of Terms: " + str(self.num_of_terms) + "\nLink: " + str(self.link))
-        print("---------------------------------")
+        return "Name: " + str(self.name) + "\nNumber of Terms: " + str(self.num_of_terms) + "\nLink: " + str(self.link)
 

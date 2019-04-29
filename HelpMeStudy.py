@@ -27,9 +27,22 @@ for item in sel_soup.findAll(class_='DashboardListItem'):
     x = Subject(name, number_of_terms, link)
     all_subjects.append(x)
 
-# For testing purposes. Prints all information regarding all subjects pulled from Quizlet user's page
+# Prints name and number of terms for each group. May need to make this look better.
 for i in range(len(all_subjects)):
-    all_subjects[i].all_info()
+    print(str(i+1) + ")\t" + all_subjects[i].info())
 
-# For testing purposes. Prints the number of subjects pulled.
-print(len(all_subjects))
+# Gets user inputs and then tests to make sure it is correct.
+# TODO: Need to make it request the user input again if wrong.
+user_input = input("Type number of group to convert to speech: ")
+try:
+    selected = int(user_input) - 1
+    if not all_subjects[selected]:
+        raise IndexError
+    print(all_subjects[selected].all_info())
+except IndexError:
+    print("Selected index does not exist.")
+except ValueError:
+    print("That was not an integer value.")
+
+
+
