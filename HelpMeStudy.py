@@ -1,5 +1,9 @@
+# Imports to web scrap
 from bs4 import BeautifulSoup
 from selenium import webdriver
+
+# Subject class in same directory
+from Subject import Subject
 
 url = 'https://www.quizlet.com/tommyboy295'
 
@@ -9,22 +13,6 @@ driver.get(url)
 s_html = driver.execute_script("return document.documentElement.outerHTML")
 
 sel_soup = BeautifulSoup(s_html, 'html.parser')
-
-
-# Class for the flashcard groups. Gets there info so we can use this later based on the cards the user wants to study.
-class Subject:
-    def __init__(self, name, num_of_terms, link):
-        self.name = name
-        self.num_of_terms = num_of_terms
-        self.link = link
-
-    def info(self):
-        return "Group:" + self.name + "has " + self.num_of_terms + "terms."
-
-    def all_info(self):
-        print("Name: " + str(self.name) + "\nNumber of Terms: " + str(self.num_of_terms) + "\nLink: " + str(self.link))
-        print("---------------------------------")
-
 
 # Array to hold all the Subjects
 all_subjects = []
