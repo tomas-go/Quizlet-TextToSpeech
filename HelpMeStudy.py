@@ -33,6 +33,7 @@ for i in range(len(all_subjects)):
 
 # Gets user inputs and then tests to make sure it is correct.
 # Will loop forever until a legal value is given.
+# TODO: Add ability to select more than one group and/or all groups.
 correct_input = False
 while not correct_input:
     try:
