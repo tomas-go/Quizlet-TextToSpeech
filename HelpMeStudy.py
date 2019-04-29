@@ -2,7 +2,7 @@
 from bs4 import BeautifulSoup
 from selenium import webdriver
 
-# Subject class in same directory
+# Subject class in Subject.py in the same directory
 from Subject import Subject
 
 url = 'https://www.quizlet.com/tommyboy295'
@@ -27,7 +27,7 @@ for item in sel_soup.findAll(class_='DashboardListItem'):
     x = Subject(name, number_of_terms, link)
     all_subjects.append(x)
 
-# Prints name and number of terms for each group. May need to make this look better.
+# Prints name and number of terms for each group.
 for i in range(len(all_subjects)):
     print(str(i+1) + ")\t" + all_subjects[i].info())
 

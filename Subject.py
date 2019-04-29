@@ -9,7 +9,7 @@ class Subject:
         self.link = link
 
     def info(self):
-         return "Group: " + self.name + " has " + self.num_of_terms + " terms."
+         return self.name + " (" + self.num_of_terms + " terms)"
 
     def all_info(self):
         return "Name: " + str(self.name) + "\nNumber of Terms: " + str(self.num_of_terms) + "\nLink: " + str(self.link)
