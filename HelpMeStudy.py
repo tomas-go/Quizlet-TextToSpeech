@@ -32,17 +32,20 @@ for i in range(len(all_subjects)):
     print(str(i+1) + ")\t" + all_subjects[i].info())
 
 # Gets user inputs and then tests to make sure it is correct.
-# TODO: Need to make it request the user input again if wrong.
-user_input = input("Type number of group to convert to speech: ")
-try:
-    selected = int(user_input) - 1
-    if not all_subjects[selected]:
-        raise IndexError
-    print(all_subjects[selected].all_info())
-except IndexError:
-    print("Selected index does not exist.")
-except ValueError:
-    print("That was not an integer value.")
+# Will loop forever until a legal value is given.
+correct_input = False
+while not correct_input:
+    try:
+        user_input = input("Type number of group to convert to speech: ")
+        selected = int(user_input) - 1
+        if not all_subjects[selected]:
+            raise IndexError
+        print(all_subjects[selected].all_info())
+        correct_input = True
+    except IndexError:
+        print("Selected index does not exist. Please try again.")
+    except ValueError:
+        print("That was not an integer value. Please try again.")
 
 
 
