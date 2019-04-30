@@ -2,8 +2,11 @@
 from bs4 import BeautifulSoup
 from selenium import webdriver
 
-# Subject class in Subject.py in the same directory
-from Subject import Subject
+# Subject class in Subjects.py in the same directory
+from Subjects import *
+
+# Text to Speech
+from TextToSpeech import tts
 
 url = 'https://www.quizlet.com/tommyboy295'
 
@@ -41,12 +44,17 @@ while not correct_input:
         selected = int(user_input) - 1
         if not all_subjects[selected]:
             raise IndexError
+        elif all_subjects[selected].num_of_terms == 0:
+            raise NoItemsToConvert
         print(all_subjects[selected].all_info())
         correct_input = True
+        tts(all_subjects[selected])     # Calls text to speech function in TextToSpeech.py
     except IndexError:
         print("Selected index does not exist. Please try again.")
     except ValueError:
         print("That was not an integer value. Please try again.")
+    except NoItemsToConvert:
+        print("This flashcard group is empty and has no items to convert to speech. Please select another group.")
 
 
 

@@ -14,3 +14,7 @@ class Subject:
     def all_info(self):
         return "Name: " + str(self.name) + "\nNumber of Terms: " + str(self.num_of_terms) + "\nLink: " + str(self.link)
 
+
+# Exception when the flashcard group has no items
+class NoItemsToConvert(Exception):
+    pass
