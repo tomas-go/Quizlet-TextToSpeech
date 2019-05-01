@@ -16,6 +16,7 @@ speech = gTTS("Tomas is cool!", 'en', 'slow')
 speech.save("testing.mp3")
 """
 
+#############
 url = "https://quizlet.com/381622817/cop4555-module-1-flash-cards/"
 # Selenium request
 driver = webdriver.Firefox()
@@ -26,12 +27,21 @@ sel_soup = BeautifulSoup(s_html, 'html.parser')
 
 all_items = []
 
-print("Length of All Items: " + str(len(all_items)))
 for card in sel_soup.findAll(class_='SetPageTerm-contentWrapper'):
-    print(card.find('div', {'class': 'SetPageTerm-wordText'}))
-    print("SHOULD BE END OF TERM ---------------------")
+    content = card.findAll(class_='TermText notranslate lang-en')
+    left = content[0].get_text()
+    right = content[1].get_text()
+    c = Item(left, right)
+    all_items.append(c)
+
+print("Number of flashcards: " + str(len(all_items)))
+
+for card in all_items:
+    print(card.all_info())
+##############
 
 # Accepts a subject as a parameter and assigns the link value to variable.
+# Then it creates a new soup and web scrapes for information regarding the flashcards themselves.
 def tts(sub):
     item_url = sub.link
 
@@ -44,14 +54,15 @@ def tts(sub):
 
     all_items = []
 
-    for card in sel_soup.findAll(class_='SetPageTerms-term'):
-        t = card.find('TermText notranslate lang-en').get_text()
-        #d = card.find('span', {'class': 'SetPageTerm-definitionText'}).get_text()
-        d = card.find('TermText notranslate lang-en').get_text()
-        y = Item(t, d)
-        all_items.append(y)
+    for card in sel_soup.findAll(class_='SetPageTerm-contentWrapper'):
+        content = card.findAll(class_='TermText notranslate lang-en')
+        left = content[0].get_text()
+        right = content[1].get_text()
+        c = Item(left, right)
+        all_items.append(c)
 
-    # Prints name and number of terms for each group.
-    for i in range(len(all_items)):
-        print(str(i + 1) + ")\t" + all_items[i].info())
+    print("Number of flashcards: " + str(len(all_items)))
+
+    for item in all_items:
+        print(item.all_info())
 
