@@ -6,7 +6,7 @@ from selenium import webdriver
 from Subjects import *
 
 # Text to Speech
-from TextToSpeech import tts
+from TermsToConvert import get_terms
 
 url = 'https://www.quizlet.com/tommyboy295'
 
@@ -48,7 +48,7 @@ while not correct_input:
             raise NoItemsToConvert
         print(all_subjects[selected].all_info())
         correct_input = True
-        tts(all_subjects[selected])     # Calls text to speech function in TextToSpeech.py
+        get_terms(all_subjects[selected])     # Calls text to speech function in TermsToConvert.py
     except IndexError:
         print("Selected index does not exist. Please try again.")
     except ValueError:
