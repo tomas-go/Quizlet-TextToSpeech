@@ -1,7 +1,9 @@
-# Import for google text to speech
-from gtts import gTTS
-import os
 
+from gtts import gTTS   # Import for google text to speech
+import os               # Import os for creating a directory
+
+# https://buildmedia.readthedocs.org/media/pdf/gtts/latest/gtts.pdf
+# gtts documentation
 
 def tts(all_terms, subject_name):
     print('Beginning work on ' + subject_name + '. Please wait till done message is shown.')
@@ -11,7 +13,7 @@ def tts(all_terms, subject_name):
 
     for i in range(len(all_terms)):
         text = all_terms[i].term + ' ' + all_terms[i].definition
-        speech = gTTS(text, 'en', 'slow')
+        speech = gTTS(text, 'en', True)
 
         # default the file should be saved as mp3 with the file name being the term used.
         try:
