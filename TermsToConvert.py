@@ -27,7 +27,7 @@ def get_terms(sub):
         c = Item(left, right)
         all_items.append(c)
     print("Number of flashcards: " + str(len(all_items)))
-    tts(all_items)
+    tts(all_items, sub.name)
 
     """
     for item in all_items:
