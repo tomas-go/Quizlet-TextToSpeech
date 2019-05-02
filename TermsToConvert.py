@@ -2,19 +2,8 @@
 from bs4 import BeautifulSoup
 from selenium import webdriver
 
-# Subject class in Subjects.py in the same directory
-from Subjects import Subject
-
 from Items import Item
-
-# Import for google text to speech
-from gtts import gTTS
-
-"""
-speech = gTTS("Tomas is cool!", 'en', 'slow')
-
-speech.save("testing.mp3")
-"""
+from TextToSpeech import tts
 
 
 # Accepts a subject as a parameter and assigns the link value to variable.
@@ -37,9 +26,10 @@ def get_terms(sub):
         right = content[1].get_text()
         c = Item(left, right)
         all_items.append(c)
-
     print("Number of flashcards: " + str(len(all_items)))
+    tts(all_items)
 
+    """
     for item in all_items:
         print(item.all_info())
-
+    """
