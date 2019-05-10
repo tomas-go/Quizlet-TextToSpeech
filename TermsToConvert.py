@@ -2,7 +2,7 @@
 from bs4 import BeautifulSoup
 from selenium import webdriver
 
-from Items import Item
+from Classes import Item
 from TextToSpeech import tts
 
 

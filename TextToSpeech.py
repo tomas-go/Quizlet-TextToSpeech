@@ -7,9 +7,10 @@ import os               # Import os for creating a directory
 
 def tts(all_terms, subject_name):
     print('Beginning work on ' + subject_name + '. Please wait till done message is shown.')
+    folder = subject_name + '/'
 
-    if not os.path.exists(os.path.dirname(subject_name + '/')):
-        os.makedirs(os.path.dirname(subject_name + '/'))
+    if not os.path.exists(os.path.dirname(folder)):
+        os.makedirs(os.path.dirname(folder))
 
     for i in range(len(all_terms)):
         text = all_terms[i].term + ' ' + all_terms[i].definition
@@ -18,10 +19,12 @@ def tts(all_terms, subject_name):
         # default the file should be saved as mp3 with the file name being the term used.
         try:
             speech.save('%s.mp3' % all_terms[i].term)
+            #os.path.join(folder, speech.save('%s.mp3' % all_terms[i].term))
         # If term is unusable as a file name, just use the flashcard number
         except (FileNotFoundError, OSError):
             speech.save('%d.mp3' % (i + 1))
+            #os.path.join(folder, speech.save('%d.mp3' % (i + 1)))
 
         print(str(i+1) + ') ' + text)
 
-    print(subject_name + 'is done!')
+    print(subject_name + ' is done!')

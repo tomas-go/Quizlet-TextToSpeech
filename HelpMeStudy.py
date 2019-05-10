@@ -3,7 +3,7 @@ from bs4 import BeautifulSoup
 from selenium import webdriver
 
 # Subject class in Subjects.py in the same directory
-from Subjects import *
+from Classes import Subject, NoItemsToConvert
 
 # Text to Speech
 from TermsToConvert import get_terms
