@@ -14,7 +14,9 @@ def tts(all_terms, subject_name):
 
     for i in range(len(all_terms)):
         text = all_terms[i].term + ' ' + all_terms[i].definition
-        speech = gTTS(text, 'en', True) #the true value is for if you want the audio to be slow. Can give options later.
+
+        # the true value is for if you want the audio to be slow. Can give options later
+        speech = gTTS(text, 'en', True)
 
         # default the file should be saved as mp3 with the file name being the term used.
         try:
