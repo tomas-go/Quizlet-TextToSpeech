@@ -9,17 +9,21 @@ from Classes import Subject, NoItemsToConvert
 from TermsToConvert import get_terms
 
 # My personal quizlet for testing
-url = 'https://www.quizlet.com/tommyboy295'
+#url = 'https://www.quizlet.com/tommyboy295'
 
 # Quizlet url input from user.
 # TODO: Add feature to allow user to copy url link for quizlet. Must have error checking to make sure it is a valid url.
+entered_url = input("Enter quizlet url: ")
 
-# Selenium request
-driver = webdriver.Firefox()
-driver.get(url)
-s_html = driver.execute_script("return document.documentElement.outerHTML")
-
-sel_soup = BeautifulSoup(s_html, 'html.parser')
+try:
+    # Selenium request
+    driver = webdriver.Firefox()
+    driver.get(entered_url)
+    s_html = driver.execute_script("return document.documentElement.outerHTML")
+    # BeautifulSoup parser
+    sel_soup = BeautifulSoup(s_html, 'html.parser')
+except Exception:
+    print("Exception Type: " + str(Exception))
 
 # Array to hold all the Subjects
 all_subjects = []
