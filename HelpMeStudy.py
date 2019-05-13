@@ -8,11 +8,8 @@ from Classes import Subject, NoItemsToConvert
 # Text to Speech
 from TermsToConvert import get_terms
 
-# My personal quizlet
-# url = 'https://www.quizlet.com/tommyboy295'
-
-# Get url from user
-url = input("Enter Quizlet url link: ")
+# My personal quizlet for testing
+url = 'https://www.quizlet.com/tommyboy295'
 
 # Selenium request
 driver = webdriver.Firefox()
