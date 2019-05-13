@@ -27,6 +27,11 @@ make good use of my time to study.
 `pip install selenium`
 
 `pip install gTTS` 
-## Usage
+## Usage (update once finished)
 Run HelpMeStudy.py. Blah,blah. Windows pop up.
 
+## Features to Add
+* Allow the user to enter a quizlet user link. Check if it is a valid link.
+* Ask the user if he/she wants to convert terms for another flashcard group.
+    * If yes, show flashcard groups again and rerun that part of the program.
+    * If no, end program.
