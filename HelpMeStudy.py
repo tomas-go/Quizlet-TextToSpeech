@@ -11,6 +11,9 @@ from TermsToConvert import get_terms
 # My personal quizlet for testing
 url = 'https://www.quizlet.com/tommyboy295'
 
+# Quizlet url input from user.
+# TODO: Add feature to allow user to copy url link for quizlet. Must have error checking to make sure it is a valid url.
+
 # Selenium request
 driver = webdriver.Firefox()
 driver.get(url)

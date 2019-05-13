@@ -15,11 +15,16 @@ make good use of my time to study.
 
 ## Prerequisites
 Install Firefox Web Browser.
-Install geckodriver.
-## Installing
-`pip install selenium`
+* Download Link: https://www.mozilla.org/en-US/firefox/new/
 
+Install geckodriver and set a path for it.
+* Download Link: https://github.com/mozilla/geckodriver/releases
+* Windows Tutorial: https://www.youtube.com/watch?v=KNzGtHI_60o
+
+## Installing
 `pip install bs4`
+
+`pip install selenium`
 
 `pip install gTTS` 
 ## Usage
