@@ -16,12 +16,14 @@ make good use of my time to study.
 ## Prerequisites
 Install Firefox Web Browser.
 Install geckodriver.
+
 ## Installing
 `pip install selenium`
 
 `pip install bs4`
 
-`pip install gTTS` 
+`pip install gTTS`
+
 ## Usage
 Run HelpMeStudy.py. Blah,blah. Windows pop up.
 
