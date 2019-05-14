@@ -1,33 +1,11 @@
 # Imports to web scrap
-from bs4 import BeautifulSoup
-from selenium import webdriver
+from bs4 import BeautifulSoup       # Import to web scrap
+from selenium import webdriver      # Import to let javascript load on web page
 from selenium.common.exceptions import InvalidArgumentException     # Import for error raised when url is invalid.
 
-# Subject class in Subjects.py in the same directory
-from Classes import Subject, NoItemsToConvert
-
-# Text to Speech
-from TermsToConvert import get_terms
-
-# My personal quizlet for testing
-#url = 'https://www.quizlet.com/tommyboy295'
-
-# string to hold the acceptable format for a url.
-url_format = "https://quizlet.com/"
-
-
-# Function to check if the url is a quizlet valid url in the proper format.
-def quizlet_valid_url(url):
-    if len(url) < len(url_format):
-        print("False 1")
-        return False
-    else:
-        for a in range(len(url_format)):
-            if not url[a] == url_format[a]:
-                print("False 2")
-                return False
-        print(True)
-        return True
+from Classes import Subject, NoItemsToConvert       # Subject class in Subjects.py in the same directory
+from TermsToConvert import get_terms                # Text to Speech
+from PatternMatching import quizlet_valid_url       # Format checking url input
 
 
 # Quizlet url input from user.
@@ -36,6 +14,7 @@ legal_url = False
 while not legal_url:
     try:
         quizlet_url = input("Enter Quizlet url: ")
+
         if quizlet_url == "exit":       # Exit option
             print("Program ended.")
             quit()
@@ -53,8 +32,8 @@ while not legal_url:
                             " Please try again.")
         driver.close()  # Ends error session
     except ValueError:
-        print(quizlet_url + " is not a valid quizlet url. The url needs to be in the format \"https://quizlet.com/username\"."
-                            " Please try again.")
+        print(quizlet_url + " is not an acceptable quizlet url. The url needs to be in the format "
+                            "\"https://quizlet.com/username\". Please try again.")
 
 # Array to hold all the Subjects
 all_subjects = []
@@ -70,7 +49,7 @@ for item in sel_soup.findAll(class_='DashboardListItem'):
     all_subjects.append(x)
 
 if len(all_subjects) == 0:
-    print("This page has no flashcard groups to convert.")
+    print("This Quizlet page has no flashcard groups to convert.")
     driver.quit()
     quit()
 else:
