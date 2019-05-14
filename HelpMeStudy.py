@@ -39,7 +39,7 @@ while not legal_url:
         if quizlet_url == "exit":       # Exit option
             print("Program ended.")
             quit()
-        elif quizlet_valid_url(quizlet_url):
+        elif not quizlet_valid_url(quizlet_url):
             raise ValueError
         # Selenium request
         driver = webdriver.Firefox()
@@ -52,10 +52,9 @@ while not legal_url:
         print(quizlet_url + " is not a valid url. The url needs to be in the format \"https://quizlet.com/username\"."
                             " Please try again.")
         driver.close()  # Ends error session
-    except ValueError():
+    except ValueError:
         print(quizlet_url + " is not a valid quizlet url. The url needs to be in the format \"https://quizlet.com/username\"."
                             " Please try again.")
-        driver.close()
 
 # Array to hold all the Subjects
 all_subjects = []
