@@ -76,6 +76,7 @@ while not correct_input:
         print(all_subjects[selected].all_info())
         correct_input = True
         get_terms(all_subjects[selected])     # Calls text to speech function in TermsToConvert.py
+        driver.quit()
     except IndexError:
         print("Selected index does not exist. Please try again.")
     except ValueError:
