@@ -9,7 +9,6 @@ from PatternMatching import quizlet_valid_url       # Format checking url input
 
 
 # Quizlet url input from user.
-# TODO: Add feature to allow user to copy url link for quizlet. Must have error checking to make sure it is a valid url.
 legal_url = False
 while not legal_url:
     try:
@@ -48,41 +47,59 @@ for item in sel_soup.findAll(class_='DashboardListItem'):
     x = Subject(name, number_of_terms, link)
     all_subjects.append(x)
 
-if len(all_subjects) == 0:
-    print("This Quizlet page has no flashcard groups to convert.")
-    driver.quit()
-    quit()
-else:
-    # Prints name and number of terms for each group.
-    for i in range(len(all_subjects)):
-        print(str(i+1) + ")\t" + all_subjects[i].info())
+
+def getFlashcardGroups():
+    if len(all_subjects) == 0:
+        print("This Quizlet page has no flashcard groups to convert.")
+        driver.quit()
+        quit()
+    else:
+        # Prints name and number of terms for each group.
+        for i in range(len(all_subjects)):
+            print(str(i+1) + ")\t" + all_subjects[i].info())
+
 
 # Gets user inputs and then tests to make sure it is correct.
 # Will loop forever until a legal value is given.
 # TODO: Add ability to select more than one group and/or all groups.
-correct_input = False
-while not correct_input:
-    try:
-        user_input = input("Type number of group to convert to speech: ")
-        if user_input == "exit":    # quit option in case user wants to terminate the program early.
-            print("Program ended.")
-            driver.quit()
-            quit()
-        selected = int(user_input) - 1
-        if not all_subjects[selected]:
-            raise IndexError
-        elif all_subjects[selected].num_of_terms == 0:
-            raise NoItemsToConvert
-        print(all_subjects[selected].all_info())
-        correct_input = True
-        get_terms(all_subjects[selected])     # Calls text to speech function in TermsToConvert.py
+def main():
+    correct_input = False
+    while not correct_input:
+        try:
+            getFlashcardGroups()
+            user_input = input("Type number of group to convert to speech: ")
+            if user_input == "exit":    # quit option in case user wants to terminate the program early.
+                print("Program ended.")
+                driver.quit()
+                quit()
+            selected = int(user_input) - 1
+            if not all_subjects[selected]:
+                raise IndexError
+            elif all_subjects[selected].num_of_terms == 0:
+                raise NoItemsToConvert
+            print(all_subjects[selected].all_info())
+            correct_input = True
+            get_terms(all_subjects[selected])     # Calls text to speech function in TermsToConvert.py
+            driver.close()
+            again()
+        except IndexError:
+            print("Selected index does not exist. Please try again.")
+        except ValueError:
+            print("That was not an integer value. Please try again.")
+        except NoItemsToConvert:
+            print("This flashcard group is empty and has no items to convert to speech. Please select another group.")
+
+
+def again():
+    more_groups_to_convert = input("Would you like to convert another group? Enter y or n: ")
+    if more_groups_to_convert == 'y':
+        main()
+    elif more_groups_to_convert == 'n' or more_groups_to_convert == 'exit':
+        print("Program ended.")
         driver.quit()
-    except IndexError:
-        print("Selected index does not exist. Please try again.")
-    except ValueError:
-        print("That was not an integer value. Please try again.")
-    except NoItemsToConvert:
-        print("This flashcard group is empty and has no items to convert to speech. Please select another group.")
+    else:
+        print("Please try again and enter a valid input.")
+        again()
 
 
-
+main()
