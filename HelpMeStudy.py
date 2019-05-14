@@ -1,6 +1,7 @@
 # Imports to web scrap
 from bs4 import BeautifulSoup
 from selenium import webdriver
+from selenium.common.exceptions import InvalidArgumentException     # Import for error raised when url is invalid.
 
 # Subject class in Subjects.py in the same directory
 from Classes import Subject, NoItemsToConvert
@@ -13,17 +14,21 @@ from TermsToConvert import get_terms
 
 # Quizlet url input from user.
 # TODO: Add feature to allow user to copy url link for quizlet. Must have error checking to make sure it is a valid url.
-entered_url = input("Enter quizlet url: ")
-
-try:
-    # Selenium request
-    driver = webdriver.Firefox()
-    driver.get(entered_url)
-    s_html = driver.execute_script("return document.documentElement.outerHTML")
-    # BeautifulSoup parser
-    sel_soup = BeautifulSoup(s_html, 'html.parser')
-except Exception:
-    print("Exception Type: " + str(Exception))
+legal_url = False
+while not legal_url:
+    try:
+        entered_url = input("Enter quizlet url: ")
+        # Selenium request
+        driver = webdriver.Firefox()
+        driver.get(entered_url)
+        s_html = driver.execute_script("return document.documentElement.outerHTML")
+        # BeautifulSoup parser
+        sel_soup = BeautifulSoup(s_html, 'html.parser')
+        legal_url = True
+    except InvalidArgumentException:
+        print(entered_url + " is not a valid url. The URL needs to be in the format \"https://quizlet.com/username\". "
+                            "Please try again.")
+        driver.quit()  # Ends error session
 
 # Array to hold all the Subjects
 all_subjects = []
@@ -38,9 +43,14 @@ for item in sel_soup.findAll(class_='DashboardListItem'):
     x = Subject(name, number_of_terms, link)
     all_subjects.append(x)
 
-# Prints name and number of terms for each group.
-for i in range(len(all_subjects)):
-    print(str(i+1) + ")\t" + all_subjects[i].info())
+if len(all_subjects) == 0:
+    print("This page has no flashcard groups to convert.")
+    driver.quit()
+    quit()
+else:
+    # Prints name and number of terms for each group.
+    for i in range(len(all_subjects)):
+        print(str(i+1) + ")\t" + all_subjects[i].info())
 
 # Gets user inputs and then tests to make sure it is correct.
 # Will loop forever until a legal value is given.
@@ -49,6 +59,9 @@ correct_input = False
 while not correct_input:
     try:
         user_input = input("Type number of group to convert to speech: ")
+        if user_input == "exit":    # quit option in case user wants to terminate the program early.
+            print("Program ended.")
+            quit()
         selected = int(user_input) - 1
         if not all_subjects[selected]:
             raise IndexError
