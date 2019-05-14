@@ -33,4 +33,9 @@ make good use of my time to study.
     * If yes, show flashcard groups again and rerun that part of the program.
     * If no, end program.
     
-
+## Bugs
+* Terms with a semi-colon only have their files names saved as the words left of the semi-colon. This can cause terms 
+with the same words left of the semi-colon to be overwritten and replaced with the last term that matches.
+* Some files are not saved on .mp3 files and cannot be deleted from my IDE (Pycharm) or through Windows Explorer.
+    * I was able to delete the files by archiving with WinRAR and selecting the setting to "Delete files after archiving."
+    This deleted the original file and then I could delete the .rar file.
