@@ -29,9 +29,9 @@ make good use of my time to study.
 `pip install gTTS` 
 
 ## Features to Add
-* Allow the user to enter a quizlet user link. Check if it is a valid link.
 * Ask the user if he/she wants to convert terms for another flashcard group.
     * If yes, show flashcard groups again and rerun that part of the program.
     * If no, end program.
+* Close Firefox windows once program is done running.
     
 
