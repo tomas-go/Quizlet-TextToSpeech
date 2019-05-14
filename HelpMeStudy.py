@@ -17,14 +17,18 @@ url_format = "https://quizlet.com/"
 
 
 # Function to check if the url is a quizlet valid url in the proper format.
-def quizlet_url_check(url):
+def quizlet_valid_url(url):
     if len(url) < len(url_format):
+        print("False 1")
         return False
     else:
-        for x in range(len(url_format)):
-            if not url[x] == url_format[x]:
+        for a in range(len(url_format)):
+            if not url[a] == url_format[a]:
+                print("False 2")
                 return False
+        print(True)
         return True
+
 
 # Quizlet url input from user.
 # TODO: Add feature to allow user to copy url link for quizlet. Must have error checking to make sure it is a valid url.
@@ -35,7 +39,7 @@ while not legal_url:
         if quizlet_url == "exit":       # Exit option
             print("Program ended.")
             quit()
-        elif not quizlet_url_check(quizlet_url):
+        elif quizlet_valid_url(quizlet_url):
             raise ValueError
         # Selenium request
         driver = webdriver.Firefox()
@@ -84,6 +88,7 @@ while not correct_input:
         user_input = input("Type number of group to convert to speech: ")
         if user_input == "exit":    # quit option in case user wants to terminate the program early.
             print("Program ended.")
+            driver.quit()
             quit()
         selected = int(user_input) - 1
         if not all_subjects[selected]:
