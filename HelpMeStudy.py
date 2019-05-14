@@ -12,11 +12,19 @@ from TermsToConvert import get_terms
 # My personal quizlet for testing
 #url = 'https://www.quizlet.com/tommyboy295'
 
-word = input("Enter: ")
-print(len(word))
-for i in range(len(word)):
-    print(str(i) + ") " + word[i])
+# string to hold the acceptable format for a url.
+url_format = "https://quizlet.com/"
 
+
+# Function to check if the url is a quizlet valid url in the proper format.
+def quizlet_url_check(url):
+    if len(url) < len(url_format):
+        return False
+    else:
+        for x in range(len(url_format)):
+            if not url[x] == url_format[x]:
+                return False
+        return True
 
 # Quizlet url input from user.
 # TODO: Add feature to allow user to copy url link for quizlet. Must have error checking to make sure it is a valid url.
@@ -27,6 +35,8 @@ while not legal_url:
         if quizlet_url == "exit":       # Exit option
             print("Program ended.")
             quit()
+        elif not quizlet_url_check(quizlet_url):
+            raise ValueError
         # Selenium request
         driver = webdriver.Firefox()
         driver.get(quizlet_url)
@@ -35,9 +45,13 @@ while not legal_url:
         sel_soup = BeautifulSoup(s_html, 'html.parser')
         legal_url = True
     except InvalidArgumentException:
-        print(quizlet_url + " is not a valid url. The URL needs to be in the format \"https://quizlet.com/username\". "
-                            "Please try again.")
-        driver.quit()  # Ends error session
+        print(quizlet_url + " is not a valid url. The url needs to be in the format \"https://quizlet.com/username\"."
+                            " Please try again.")
+        driver.close()  # Ends error session
+    except ValueError():
+        print(quizlet_url + " is not a valid quizlet url. The url needs to be in the format \"https://quizlet.com/username\"."
+                            " Please try again.")
+        driver.close()
 
 # Array to hold all the Subjects
 all_subjects = []
