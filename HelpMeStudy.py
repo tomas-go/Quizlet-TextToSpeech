@@ -12,21 +12,30 @@ from TermsToConvert import get_terms
 # My personal quizlet for testing
 #url = 'https://www.quizlet.com/tommyboy295'
 
+word = input("Enter: ")
+print(len(word))
+for i in range(len(word)):
+    print(str(i) + ") " + word[i])
+
+
 # Quizlet url input from user.
 # TODO: Add feature to allow user to copy url link for quizlet. Must have error checking to make sure it is a valid url.
 legal_url = False
 while not legal_url:
     try:
-        entered_url = input("Enter quizlet url: ")
+        quizlet_url = input("Enter Quizlet url: ")
+        if quizlet_url == "exit":       # Exit option
+            print("Program ended.")
+            quit()
         # Selenium request
         driver = webdriver.Firefox()
-        driver.get(entered_url)
+        driver.get(quizlet_url)
         s_html = driver.execute_script("return document.documentElement.outerHTML")
         # BeautifulSoup parser
         sel_soup = BeautifulSoup(s_html, 'html.parser')
         legal_url = True
     except InvalidArgumentException:
-        print(entered_url + " is not a valid url. The URL needs to be in the format \"https://quizlet.com/username\". "
+        print(quizlet_url + " is not a valid url. The URL needs to be in the format \"https://quizlet.com/username\". "
                             "Please try again.")
         driver.quit()  # Ends error session
 
