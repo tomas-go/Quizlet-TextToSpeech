@@ -80,7 +80,6 @@ def main():
             print(all_subjects[selected].all_info())
             correct_input = True
             get_terms(all_subjects[selected])     # Calls text to speech function in TermsToConvert.py
-            driver.close()
             again()
         except IndexError:
             print("Selected index does not exist. Please try again.")
