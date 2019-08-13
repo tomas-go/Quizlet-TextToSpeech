@@ -5,8 +5,6 @@
     * Also to get away from installing packages globally.
     * Videos used to refer to:
       * https://www.youtube.com/watch?v=zDYL22QNiWk
-    * PROBLEMS:
-      * `pipenv install` works and begins to install dependencies but gets stuck on the last one. This seems to be with `urllib3`. I ran `pipenv install urllib3` and the program got stuck in the same way. 
     * Progress:
       * Program can run with:
         * `pipenv run HelpMeStudy.py`
@@ -15,5 +13,7 @@
         * `pipenv shell`
           
           `py HelpMeStudy.py`
+    * Problems:
+      * `pipenv install` works and begins to install dependencies but gets stuck on the last one. This seems to be with `urllib3`. I ran `pipenv install urllib3` and the program got stuck in the same way. 
 * Create a GUI to make the user experience better than just using the terminal.
 * Practice using git and merging branches.
