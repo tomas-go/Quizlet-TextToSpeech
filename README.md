@@ -15,5 +15,6 @@
           `py HelpMeStudy.py`
     * Problems:
       * `pipenv install` works and begins to install dependencies but gets stuck on the last one. This seems to be with `urllib3`. I ran `pipenv install urllib3` and the program got stuck in the same way. 
+        * Restarted my computer and this works fine now. The last dependency does take the most time but it works fine after that. Not sure how to replicate error.
 * Create a GUI to make the user experience better than just using the terminal.
 * Practice using git and merging branches.
