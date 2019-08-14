@@ -1,3 +1,4 @@
 # Items to ignore
 .idea
 geckodriver.log
+.vscode
