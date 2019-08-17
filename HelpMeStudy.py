@@ -7,6 +7,9 @@ from Classes import Subject, NoItemsToConvert       # Subject class in Subjects.
 from TermsToConvert import get_terms                # Text to Speech
 from PatternMatching import quizlet_valid_url       # Format checking url input
 
+from GUI import root    # Import the root/window from GUI.py
+
+root.mainloop()     # Make the window run
 
 # Quizlet url input from user.
 legal_url = False

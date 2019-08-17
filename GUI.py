@@ -9,4 +9,4 @@ canvas = tk.Canvas(root, height=HEIGHT, width=WIDTH)
 canvas.pack()
 
 
-root.mainloop()
+# root.mainloop()
