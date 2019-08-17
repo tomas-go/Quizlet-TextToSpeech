@@ -10,7 +10,7 @@ from PatternMatching import quizlet_valid_url       # Format checking url input
 from GUI import root    # Import the root/window from GUI.py
 
 root.mainloop()     # Make the window run
-
+"""
 legal_url = False
 
 # Array to hold all the Subjects
@@ -108,3 +108,4 @@ def again():
 
 
 main()
+"""
