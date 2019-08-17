@@ -11,34 +11,37 @@ from GUI import root    # Import the root/window from GUI.py
 
 root.mainloop()     # Make the window run
 
-# Quizlet url input from user.
 legal_url = False
-while not legal_url:
-    try:
-        quizlet_url = input("Enter Quizlet url: ")
-
-        if quizlet_url == "exit":       # Exit option
-            print("Program ended.")
-            quit()
-        elif not quizlet_valid_url(quizlet_url):
-            raise ValueError
-        # Selenium request
-        driver = webdriver.Firefox()
-        driver.get(quizlet_url)
-        s_html = driver.execute_script("return document.documentElement.outerHTML")
-        # BeautifulSoup parser
-        sel_soup = BeautifulSoup(s_html, 'html.parser')
-        legal_url = True
-    except InvalidArgumentException:
-        print(quizlet_url + " is not a valid url. The url needs to be in the format \"https://quizlet.com/username\"."
-                            " Please try again.")
-        driver.close()  # Ends error session
-    except ValueError:
-        print(quizlet_url + " is not an acceptable quizlet url. The url needs to be in the format "
-                            "\"https://quizlet.com/username\". Please try again.")
 
 # Array to hold all the Subjects
 all_subjects = []
+
+
+# Quizlet url input from user.
+def get_page(entry):
+    while not legal_url:
+        try:
+            quizlet_url = entry
+
+            if quizlet_url == "exit":       # Exit option
+                print("Program ended.")
+                quit()
+            elif not quizlet_valid_url(quizlet_url):
+                raise ValueError
+            # Selenium request
+            driver = webdriver.Firefox()
+            driver.get(quizlet_url)
+            s_html = driver.execute_script("return document.documentElement.outerHTML")
+            # BeautifulSoup parser
+            sel_soup = BeautifulSoup(s_html, 'html.parser')
+            legal_url = True
+        except InvalidArgumentException:
+            print(quizlet_url + " is not a valid url. The url needs to be in the format \"https://quizlet.com/username\"."
+                                " Please try again.")
+            driver.close()  # Ends error session
+        except ValueError:
+            print(quizlet_url + " is not an acceptable quizlet url. The url needs to be in the format "
+                                "\"https://quizlet.com/username\". Please try again.")
 
 # DashboardListItem is the section that holds all information regarding each flashcard group.
 # This loop pulls the name of the item, the number of terms associated with the item, and the link to the item.
