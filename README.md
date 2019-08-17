@@ -24,3 +24,5 @@
     - [ ] Allow the user to select which ones they want to convert.
   - [ ] Allow the user to select a location for the files.
 - [ ] Practice using git and merging branches.
+- [ ] Get image of quizlet user.
+- [ ] Make GUI pretty.
