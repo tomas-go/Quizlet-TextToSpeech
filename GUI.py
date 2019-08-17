@@ -4,6 +4,7 @@ HEIGHT = 500
 WIDTH = 600
 
 root = tk.Tk()
+root.title("Quizlet Text To Speech App")    # Title for window
 
 canvas = tk.Canvas(root, height=HEIGHT, width=WIDTH)
 canvas.pack()
