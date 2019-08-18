@@ -62,7 +62,7 @@ submit_button.place(relx=0.7, relheight=1, relwidth=0.3)
 lower_frame = tk.Frame(root, bg='#80c1ff', bd=10)
 lower_frame.place(relx=0.5, rely=0.25, relwidth=0.75, relheight=0.6, anchor='n')
 
-subject_names = tk.Listbox(lower_frame, selectmode="multiple")
+subject_names = tk.Listbox(lower_frame, selectmode="multiple", activestyle="none")
 subject_names.place(relwidth=0.5, relheight=1)
 
 root.mainloop()
