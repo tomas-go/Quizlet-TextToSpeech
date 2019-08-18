@@ -24,6 +24,7 @@ def get_page(entry):
     # Call to get all subject names
     get_subject_info(sel_soup.findAll(class_='DashboardListItem'))
 
+# Get the subject information for all objects from the DashboardListItem(s) on the site. 
 def get_subject_info(subject_info):
     for item in subject_info:
         name = item.find('span', {'class': 'SetPreview-cardHeaderTitle'}).get_text()
@@ -33,6 +34,7 @@ def get_subject_info(subject_info):
         all_subjects.append(x)
     populate_subject_names()
 
+# Populates the listbox with all the names of the subjects.
 def populate_subject_names():
     for i in all_subjects:
         subject_names.insert(all_subjects.index(i), i.name)
@@ -60,7 +62,7 @@ submit_button.place(relx=0.7, relheight=1, relwidth=0.3)
 lower_frame = tk.Frame(root, bg='#80c1ff', bd=10)
 lower_frame.place(relx=0.5, rely=0.25, relwidth=0.75, relheight=0.6, anchor='n')
 
-subject_names = tk.Listbox(lower_frame)
+subject_names = tk.Listbox(lower_frame, selectmode="multiple")
 subject_names.place(relwidth=0.5, relheight=1)
 
-# root.mainloop()
+root.mainloop()
