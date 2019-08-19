@@ -22,7 +22,8 @@
   - [X] Submit button for getting subjects from inputted url.
   - [X] List all flashcard sets
     - [ ] Allow the user to select which ones they want to convert.
+  - [ ] Get image of quizlet user.
+  - [ ] Make GUI pretty.
   - [ ] Allow the user to select a location for the files.
 - [ ] Practice using git and merging branches.
-- [ ] Get image of quizlet user.
-- [ ] Make GUI pretty.
+
